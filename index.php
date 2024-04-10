@@ -1,6 +1,6 @@
 <?php
 
-use function Utils\connexionToBD;
+// use function Utils\connexionToBD;
 
 require_once 'utils/connexion.php';
 
@@ -21,7 +21,7 @@ require_once 'services/user.service.php';
 
 session_start();
 
-$pdo = connexionToBD();
+$pdo = \Utils\connexionToBD();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@ $connexion_inclus = true; ?>
 
     <div class="wrapper">
         <?php
-        if (isset($_GET['page']) && $_GET['page'] !== 'signin' && $_GET['page'] !== 'signup') {
+        if (isset($_GET['page']) && $_GET['page'] !== 'signin' && $_GET['page'] !== 'signup' && $_GET['page'] !== 'landing') {
             include_once('partials/sideBar.php');
             include_once('partials/navbar.php');
         }
@@ -45,7 +45,6 @@ $connexion_inclus = true; ?>
 
         <?php
         if (isset($_GET['page'])) {
-
             if ($_GET['page'] == 'home') {
                 include_once('pages/home.php');
             } elseif ($_GET['page'] == 'home-user') {
@@ -62,18 +61,18 @@ $connexion_inclus = true; ?>
                 include_once('pages/user-detail.php');
             } elseif ($_GET['page'] == 'project-detail') {
                 include_once('pages/project-detail.php');
-            } elseif ($_GET['page'] == 'signup') {
-                include_once('pages/auth-sign-up.php');
-            } else {
+            } elseif ($_GET['page'] == 'signin') {
                 include_once('pages/auth-sign-in.php');
+            } else {
+                include_once('pages/landing.php');
             }
         } else {
-            include_once('pages/auth-sign-in.php');
+            include_once('pages/landing.php');
         }
         ?>
     </div>
     <?php
-    if (isset($_GET['page']) && $_GET['page'] !== 'signin' && $_GET['page'] !== 'signup') {
+    if (isset($_GET['page']) && $_GET['page'] !== 'signin' && $_GET['page'] !== 'signup' && $_GET['page'] !== 'landing') {
         include_once('./partials/footer.php');
     }
     ?>

@@ -1,15 +1,15 @@
 <?php
 
 use Model\User;
-use function Services\login;
-use function Services\register;
+// use function Services\login;
+// use function Services\register;
 
 $error = null;
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
    if (!empty($_POST['username']) && !empty($_POST['password'])) {
       extract($_POST);
-      $user = login($pdo, $username, $password);
+      $user = \Services\login($pdo, $username, $password);
       if ($user == null) {
          $error = "Identifiant incorrect";
       } else {
@@ -65,7 +65,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                               </div>
                               <button type="submit" class="btn btn-white">Connexion</button>
                               <p class="mt-3">
-                                 Créer un compte <a href="?page=signup" class="text-white text-underline">Inscription</a>
+                                 Retourner à l'écan <a href="?page=landing" class="text-white text-underline">d'accueil</a>
                               </p>
                            </form>
                         </div>

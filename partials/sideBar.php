@@ -42,7 +42,7 @@ function getPourcentageTaskUser()
 }
 
 if (!isset($_SESSION['user'])) {
-    header('Location:?page=signin');
+    header('Location:?page=landing');
     exit();
 }
 
